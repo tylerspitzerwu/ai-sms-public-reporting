@@ -6,10 +6,10 @@ import gspread
 from gspread_dataframe import get_as_dataframe
 from streamlit_autorefresh import st_autorefresh
 
-# 🔄 Auto-refresh every 20 seconds
+# Auto-refresh every 20 seconds
 st_autorefresh(interval=20 * 1000, key="refresh")
 
-# 🗂 Load data from Google Sheets
+# Load data from Google Sheets
 @st.cache_data(ttl=20)
 def load_data():
     gc = gspread.service_account(filename='creds.json')
@@ -24,7 +24,7 @@ def load_data():
 
 df = load_data()
 
-# 🎛 Filter to known departments
+# Filter to known departments
 known_departments = ["Police", "Fire Department", "Public Works", "Sanitation", "Social Services"]
 df = df[df['department'].isin(known_departments)]
 
